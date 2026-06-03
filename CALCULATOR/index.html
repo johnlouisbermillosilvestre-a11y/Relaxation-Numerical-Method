@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relaxation Method Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+    <header>
+        <div class="icon">🧮</div>
+        <h1>Relaxation Method Calculator</h1>
+        <p>Solve systems of linear equations with interactive relaxation control.</p>
+    </header>
+
+    <main class="grid">
+
+        <section class="card">
+            <div class="card-header">
+                <h3>⚙️ System of Equations</h3>
+                <span class="hint">Use x, y, z. Example: 8x + y + z = 8</span>
+            </div>
+
+            <label>Equation 1</label>
+            <input id="eq1" value="8x + y + z = 8">
+
+            <label>Equation 2</label>
+            <input id="eq2" value="2x + 4y + z = 4">
+
+            <label>Equation 3</label>
+            <input id="eq3" value="x + 3y + 5z = 5">
+        </section>
+
+        <section class="card result-card">
+            <h3>✨ Final Solution</h3>
+            <div class="solution">
+                <div class="bubble red">
+                    <span class="var">x</span>
+                    <span id="fx">–</span>
+                </div>
+                <div class="bubble yellow">
+                    <span class="var">y</span>
+                    <span id="fy">–</span>
+                </div>
+                <div class="bubble blue">
+                    <span class="var">z</span>
+                    <span id="fz">–</span>
+                </div>
+            </div>
+            <div class="result-meta">
+                <span id="conv">–</span>
+                <span id="residual">Residual: –</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>🎯 Initial Values</h3>
+            <div class="row inputs-row">
+                <input id="x0" placeholder="x₀" value="2">
+                <input id="y0" placeholder="y₀" value="3">
+                <input id="z0" placeholder="z₀" value="2">
+            </div>
+
+            <div class="row inputs-row">
+                <input id="iter" placeholder="Iterations" value="13">
+                <input id="omega" placeholder="Relaxation ω" value="1.0">
+                <input id="tol" placeholder="Tolerance" value="0.0001">
+            </div>
+
+            <div class="row btn-row">
+                <button id="solveBtn" onclick="solve()">▶ Solve</button>
+                <button id="animateBtn" onclick="animateSolve()">⏯ Animate</button>
+                <button class="clear" onclick="clearAll()">✕ Clear</button>
+            </div>
+            <p class="input-note">Use ω between 0.5 and 1.5 to adjust convergence speed.</p>
+        </section>
+
+        <section class="card table-card">
+            <h3>📊 Iteration History</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>x</th>
+                            <th>y</th>
+                            <th>z</th>
+                            <th>residual</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table"></tbody>
+                </table>
+            </div>
+            <div id="status" class="status-message">Ready to compute.</div>
+        </section>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
